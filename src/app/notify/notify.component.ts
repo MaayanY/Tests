@@ -24,8 +24,6 @@ export class NotifyComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public sound: string;
   @Input() public data: any;
   @Input() public tag: string;
-  @Input() public dir: string = 'auto';
-  @Input() public lang: string = 'en-US';
   @Input() public renotify: boolean = false;
   @Input() public sticky: boolean = false;
   @Input() public vibrate: Array<number>;
@@ -63,8 +61,6 @@ export class NotifyComponent implements OnInit, OnChanges, OnDestroy {
 
   public create () {
     let notification = new Notification(this.title, {
-      dir: this.dir,
-      lang: this.lang,
       data: this.data,
       tag: this.tag,
       body: this.body,
@@ -123,7 +119,12 @@ export class NotifyComponent implements OnInit, OnChanges, OnDestroy {
     this.closeAll();
   }
 
-  public ngOnChanges(): void {
+  public ngOnChanges(...args: any[]) {
+    	if(this.title && this.title !='' && this.body && this.body !=''){
+          (this.show());
+      }
+      
+    
   }
 
 }

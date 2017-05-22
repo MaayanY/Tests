@@ -1,10 +1,9 @@
 <div *ngFor="let message of messages">
 	{{message.text}}
 </div>
-<push-notification 	#notification
-					[title]="notification.title"
-					[body]="notification.body"
-					[icon]="notification.icon"
-					[closeDelay]="notification.closeDelay"
-					(action)="notification.action($event)">
+<push-notification 	[title]="options.title"
+					[body]="options.body"
+					[icon]="options.icon"
+					[closeDelay]="options.closeDelay"
+					(action)="options.onClick($event)" >
 </push-notification>
