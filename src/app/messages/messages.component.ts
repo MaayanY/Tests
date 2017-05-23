@@ -7,33 +7,32 @@ import {
   Input,
   Output
 } from '@angular/core';
-import { MessageService }       from '../../services/message.service';
-import { NotificationsService } from 'angular2-notifications';
+
 import {NotifyComponent} from '../notify/notify.component';
-import { MessaegeItemComponent }   from '../messaege-item/messaege-item.component';
+import {MessaegeItemComponent }   from '../messaege-item/messaege-item.component';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css'],
-  providers: [MessageService, NotifyComponent, MessaegeItemComponent]
+  providers: [NotifyComponent, MessaegeItemComponent]
 })
 
 export class MessagesComponent implements OnInit, OnDestroy {
-	@Input() public app: string;
+	@Input() public socket: any;
   action = this.notifyClick.bind(this);
   close = this.notifyClose.bind(this);
   messages = [];
   selectedMessage = '';
   
 	options : any = {
-        title: 'Goofy Notification',
+        title: 'Mini Notification',
         body:  '',
-        icon:  'http://www.toonhood.com/admin/models/imagegalleryupload/1_(1)5.gif',
+        icon:  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu3jlTYop6X9K6S8EJ3_tBS8UjkzxfMEKbF1FDZE44_1Uz7HuE',
         sound: '',
         data: {},
-        tag: 'Goofy',
+        tag: 'Mini',
         renotify: false,
         sticky: true,
         noscreen: true,
@@ -45,8 +44,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     };
        
     connection;
-  	constructor(private messgasService: MessageService, 
-  				      private notifications: NotifyComponent,
+  	constructor(private notifications:  NotifyComponent,
                 private activatedRoute: ActivatedRoute) { }
     
     notifyClick(event, notification){
@@ -62,7 +60,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     
     ngOnInit() {
-  		this.connection = this.messgasService.getMessages().subscribe(message => {
+  		this.connection = this.socket.getMessages().subscribe(message => {
 	        var m :any = message;
           this.messages.map(function(message){
              message.isNew=false;

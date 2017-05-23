@@ -1,14 +1,17 @@
-<div *ngFor="let message of messages; let i = index">
-	<message-item  [itemText] = "message.data.text" 
-				   [isSelected] ="message.isNew" ></message-item>
+<div >
+	
+	<div *ngFor="let message of messages; let i = index">
+		<message-item  [itemText] = "message.data.text" 
+					   [isSelected] ="message.isNew" ></message-item>
 
+	</div>
+
+
+	<notification 	
+					[title]="options.title"
+					[body]="options.body"
+					[icon]="options.icon"
+					[closeDelay]="options.closeDelay"
+					(action)="options.onClick($event)" >
+	</notification>
 </div>
-
-
-<notification 	
-				[title]="options.title"
-				[body]="options.body"
-				[icon]="options.icon"
-				[closeDelay]="options.closeDelay"
-				(action)="options.onClick($event)" >
-</notification>
