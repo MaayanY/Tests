@@ -11,8 +11,7 @@ import {
 declare var Notification;
 
 @Component({
-  selector: 'push-notification',
-  styles: [':host { display: none; }'],
+  selector: 'notification',
   template: ''
 })
 
