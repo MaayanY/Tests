@@ -47,9 +47,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
        
     connection;
   	
-    
-    notifyClick(event, notification){
-      event.notification.close(event.notification);
+    signItem(event, notification){
+      
       this.zone.run(() =>{
         this.messages.map(function(message){
              message.isNew=false;
@@ -60,11 +59,16 @@ export class MessagesComponent implements OnInit, OnDestroy {
         
       });
       
-      window.focus()
+      window.focus() 
+      event.notification.close(event.notification); 
+    }
+    
+    notifyClick(event, notification){
+      this.signItem(event, notification);
     }
   	
     notifyClose(event, notification){
-      window.focus()
+      this.signItem(event, notification);
       
     }
 

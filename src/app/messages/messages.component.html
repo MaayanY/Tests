@@ -8,10 +8,11 @@
 
 
 	<notification 	
-					[title]="options.title"
-					[body]="options.body"
-					[icon]="options.icon"
-					[closeDelay]="options.closeDelay"
-					(action)="options.onClick($event)" >
+					[title] = "options.title"
+					[body] = "options.body"
+					[icon] = "options.icon"
+					[closeDelay] = "options.closeDelay"
+					(action) = "options.onClick($event)"
+					(close) = "options.onClose($event)"  >
 	</notification>
 </div>
