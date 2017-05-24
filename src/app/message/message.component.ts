@@ -24,7 +24,14 @@ export class MessageComponent implements OnInit {
 	    this.socket.sendMessage(this.message);
 	    this.message = '';
 	}
-
+  
+  keyDownSend(event){
+      if(event.keyCode == 13) {
+        this.sendMessage();
+    
+      }
+  }
+  
   ngOnInit() {
   }
 

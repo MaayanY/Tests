@@ -5,7 +5,8 @@ import {
   OnChanges,
   OnDestroy,
   Input,
-  Output
+  Output,
+  NgZone
 } from '@angular/core';
 
 import {NotifyComponent} from '../notify/notify.component';
@@ -21,6 +22,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 
 export class MessagesComponent implements OnInit, OnDestroy {
 	@Input() public socket: any;
+  constructor(private activatedRoute: ActivatedRoute,private zone:NgZone ) { }
   action = this.notifyClick.bind(this);
   close = this.notifyClose.bind(this);
   messages = [];
@@ -44,13 +46,21 @@ export class MessagesComponent implements OnInit, OnDestroy {
     };
        
     connection;
-  	constructor(private notifications:  NotifyComponent,
-                private activatedRoute: ActivatedRoute) { }
+  	
     
     notifyClick(event, notification){
+      event.notification.close(event.notification);
+      this.zone.run(() =>{
+        this.messages.map(function(message){
+             message.isNew=false;
+             if(message.data.text==event.notification.body){
+               message.isNew=true;
+             }
+        });
+        
+      });
       
       window.focus()
-      
     }
   	
     notifyClose(event, notification){
@@ -69,7 +79,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
             data: m,
             isNew: true
           }
-          this.messages.push(data);
+          this.messages.unshift(data);
 	        this.options.body = m.text;
 	        
 
