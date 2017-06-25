@@ -1,0 +1,26 @@
+{
+  "name": "generator-angular-business-component",
+  "version": "0.0.1",
+  "description": "Creates a new buisness component.",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "glob": "^7.0.0",
+    "lodash": "^4.3.0",
+    "yeoman-generator": "^0.20.2",
+    "moment": "2.14.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "type-is": "1.6.13",
+    "gulp-bump": "2.1.0"
+  },
+  "scripts": {
+	  "gulp": "gulp",
+	  "clean": "echo N/A",
+	  "jenkinsBuild": "echo N/A",
+	  "patchVer": "gulp bump"
+  },
+  "files": [
+    "index.js"
+  ]
+}
